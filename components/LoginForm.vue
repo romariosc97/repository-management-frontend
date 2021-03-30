@@ -64,10 +64,13 @@
                     const hashArray = Array.from(new Uint8Array(hashBuffer));
                     const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
                     password = hashHex;
-                    const response = await this.$axios.post('http://localhost:8080/auth/login', {
+                    const loginAxios = this.$axios.create({
+                        withCredentials: true
+                    });
+                    const response = await loginAxios.post('http://localhost:8080/auth/login', {
                         email: this.email,
                         password: password
-                    }, { withCredentials: true });                    
+                    });                    
                     if(response.data.success){
                         this.$router.push('/dashboard');
                     }else{

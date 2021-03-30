@@ -1,7 +1,7 @@
 <template>
-  <div class="container">
-    <h5>Dashboard</h5>
-  </div>
+    <div class="">
+        <Navbar />
+    </div>
 </template>
 
 <script>
@@ -20,7 +20,10 @@
         methods: {
             async getSession() {
                 try {
-                    const response = await this.$axios.get('http://localhost:8080/auth/session');                    
+                    const sessionAxios = this.$axios.create({
+                        withCredentials: true
+                    });
+                    const response = await sessionAxios.get('http://localhost:8080/auth/session');                    
                     console.log(response.data);
                     if(response.data.success){
                         console.log(response.data);
@@ -49,5 +52,4 @@
     align-items: center;
     text-align: center;
   }
-
 </style>

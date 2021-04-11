@@ -1,5 +1,8 @@
 export default () => ({
     counter: 0,
     userEmail: '',
-    userGithub: ''
+    githubUsername: '',
+    githubRepositories: [],
+    toastConf: {message:'', type:'Error'},
+    toastState: false,
 })
